@@ -1,0 +1,174 @@
+.gallery {
+    --loader-size: 3em;
+    --loader-size-2: calc(var(--loader-size) * 2);
+    --rotation: 0deg;
+    position: relative;
+    transform: rotateY(var(--rotation));
+    transform-style: preserve-3d;
+    width: 60%;
+    height: 20em;
+    max-width: 100%;
+    max-height: 100vh;  
+    counter-reset: panels;
+    transition: transform 1s;
+    user-select: none;
+    right: 0;
+    left: 0;
+    margin: auto;
+}
+
+.gallery.loading {
+    overflow: hidden;
+}
+
+.gallery.loading::before {
+    content: "Loading...";
+    position: relative;
+    display: inline-block;
+    width: var(--loader-size-2);
+    height: var(--loader-size);
+    text-align: center;
+    line-height: 3em;
+    font-size: 3em;
+    border: 10px solid white;
+    border-radius: 100%;
+    color: white;
+    transform: translate3d(-50%, -50%, 0px);
+}
+.gallery.auto-spin {
+    transition: none;
+    animation: spin 30s linear 0s infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotateY(var(--rotation));
+    }
+    
+    to {
+        transform: rotateY(calc(360deg + var(--rotation)));
+    }
+}
+
+.gallery.loading .panel {
+    display: flex;
+}
+
+.panel {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-weight: bold;
+    line-height: 20em;
+    backface-visiblity: hidden;
+    transition: width 1s, height 1s;
+    user-select: none;
+}
+
+.panel:nth-child(odd) {
+    background-color: rgb(202, 204, 204)
+}
+
+.panel:hover {
+    background-color: rgba(255, 0, 128, 0.25);
+}
+
+.panel img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    user-select: none;
+}
+
+.controls {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20em;
+    padding: 0.25em;
+    text-align: center;
+    background-color: rgba(128,128,128, 0.25);
+    border-radius: 5px;
+    animation: fade-out 5s;
+    animation-fill-mode: forwards;
+}
+
+.controls:hover {
+    animation: none;
+    animation-fill-mode: none;
+}
+
+@keyframes fade-out {    
+    75% {
+        opacity: 1;
+    }
+    
+    to {
+        opacity: 0;
+    }
+}
+
+.controls .button {
+    positon: relative;
+    display: inline-block;
+    width: 5em;
+    height: 2em;
+    padding: 0.25em;
+    text-align: center;
+    line-height: 2em;
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: lightgrey;
+    transition: color 0.5s, background-color 0.5s;
+    cursor: pointer;
+}
+
+.controls .button:hover {
+    color: white;
+    background-color: #808080;
+}
+
+.controls .button::before {
+    margin-top: 0.1em;
+}
+
+.next {
+    float: right;
+}
+
+.next::before {    
+    content: "\2B05";
+    display: inline-block;
+    transform: scale(-1.75, 2);
+    color: #808080;
+}
+
+.previous {
+   float: left;
+}
+
+.previous::before {
+    content: "\2B05";
+    display: inline-block;
+    transform: scale(1.75, 2);
+    
+}
+
+.play-state {
+    width: 2em;
+}
+
+.play-state::before {
+    content: "\2759 \2759";
+    display: inline-block;
+    transform: scale(2);
+    color: #808080;
+}
+
+.play-state.paused::before {
+    content: "\25B6";
+}
+
