@@ -1,0 +1,36 @@
+.header-bg{
+    height: 100vh;
+    width: 100%;
+    size: cover;
+    opacity: 0.9;
+}
+.navbar-fixed-top{
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+.navbar-fixed-top {
+    top: 0;
+    border-width: 0 0 1px;
+}
+
+.vn-mn{
+    text-align: center;
+}
+/*--vision--*/
+.vsn-img>img{
+    width:300px;
+    padding-left: 50px;
+}
+/*--//vision--*/
+
+/*--mission--*/
+.msn-img>img{
+   
+    width:300px;
+    padding-right: 30px;
+    height: auto;
+}
+/*--//mission--*/
